@@ -6,6 +6,7 @@ $ ./readFormula searchProblem {-v}
 
 This program takes an epistemic search problem file, which includes a goal (epistemic formula), a start model (S5n Kripke structure), a set of actions (event models).
 
+This approaches of this program are inspired by "A Gentle Introduction to Epistemic Planning: The DEL Approach" Bolander (2017), where I also used the “birthday present example” disucces in the paper as my test case.
 To run the “birthday present example”, run $ ./readFormula searchProblem {-v}. By put the optional "-v" at the end, the detail of the search will be printed.
 
 To run a more complicated example:
