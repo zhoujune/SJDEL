@@ -1,0 +1,50 @@
+build:
+$ make
+
+run:
+$ ./readFormula searchProblem {-v}
+
+This program takes an epistemic search problem file, which includes a goal (epistemic formula), a start model (S5n Kripke structure), a set of actions (event models).
+
+To run the “birthday present example”, run $ ./readFormula searchProblem {-v}. By put the optional "-v" at the end, the detail of the search will be printed.
+
+To run a more complicated example:
+$ ./readFormula searchProblem2 {-v}
+This example builds on the “birthday present example”, where I assume that Father doesn't know how to Wrap the present and has to go for the "WrapMan" for help, who is either in PO1 or PO2 (Father doesn't know this at plan time).
+
+I implemented a simple BFS as the forward search algorithm and set the time limit to be 100 seconds.
+
+
+The format of the input of the file:
+• goal has to take the first line 
+    Supported formula: formulas are supported with the following symbol. 
+
+    Box Symbol: KA (Where A is the agent Symbol, which can be A,B,C,D,E)
+    Diamond Symbol: MA (Where A is the agent Symbol, which can be A,B,C,D,E)
+    Negation Symbol: !
+    Conjunction Symbol: &
+    Disjunction Symbol: |
+    Implication Symbol: ->
+• start model is defined after "initial:"
+    model informations takes the following form:
+    S = $set of all states$     (states can take any string name but usually we use lower case char)
+    R_%AGENT1% = $set of accessible relations (pair of state) under AGENT1$   (AGENT1 can take one of A,B,C,D,E)
+    R_%AGENT2% = $set of accessible relations (pair of state) under AGENT2$   
+    ....
+    R_%AGENTn% = $set of accessible relations (pair of state) under AGENTn$
+    L_$STATE1$ = $set of all true propositions in state $STATE1$$        ($STATE1$ is the state name defined in S)
+    L_$STATE2$ = $set of all true propositions in state $STATE1$$        ($STATE2$ is the state name defined in S)
+    ....
+    L_$STATEn$ = $set of all true propositions in state $STATE1$$         ($STATEn$ is the state name defined in S)
+• action is defined after "action:{name of the action}"
+    action informations takes the following forms:
+    E = $set of all events$     (events can take any string name but usually we use lower case char)
+    R_%AGENT1% = $set of accessible relations (pair of state) under AGENT1$   (AGENT1 can take one of A,B,C,D,E)
+    R_%AGENT2% = $set of accessible relations (pair of state) under AGENT2$   
+    ....
+    R_%AGENTn% = $set of accessible relations (pair of state) under AGENTn$
+    pre = $set of pre condition pairs, one pair is (STATE, condition atoms)$ (seperate atoms with "&")
+    post = $set of post condition pairs, one pair is (STATE, condition atoms)$ (seperate atoms with "&")
+
+
+

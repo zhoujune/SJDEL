@@ -1,0 +1,73 @@
+atAH & hasAP & wrapP
+
+initial:
+S = {w1, w2}
+D = {w1, w2}
+R_A = {(w1, w1),(w1, w2),(w2, w1),(w2, w2)}
+L_w1 = {atAH, atPP1}
+L_w2 = {atAH, atPP2}
+
+action: TryPickUp(Father, Present, P1)
+E = {e, f}
+D = {e, f}
+R_A = {(e, e), (f, f)}
+pre = {(e, atAP1 & atPP1 & !hasAP),(f, atAP1 & !atPP1)}
+post = {(e, hasAP & !atPP1),(f, T)}
+
+action: TryPickUp(Father, Present, P2)
+E = {e, f}
+D = {e, f}
+R_A = {(e, e), (f, f)}
+pre = {(e, atAP2 & atPP2 & !hasAP),(f, atAP2 & !atPP2)}
+post = {(e, hasAP & !atPP2),(f, T)}
+
+action: Go(Father, H, PO1)
+E = {e}
+D = {e}
+R_A = {(e, e)}
+pre = {(e, atAH)}
+post = {(e, !atAH & atAP1)}
+
+action: Go(Father, H, PO2)
+E = {e}
+D = {e}
+R_A = {(e, e)}
+pre = {(e, atAH)}
+post = {(e, !atAH & atAP2)}
+
+action: Go(Father, PO1, PO2)
+E = {e}
+D = {e}
+R_A = {(e, e)}
+pre = {(e, atAP1)}
+post = {(e, !atAP1 & atAP2)}
+
+action: Go(Father, PO2, PO1)
+E = {e}
+D = {e}
+R_A = {(e, e)}
+pre = {(e, atAP2)}
+post = {(e, !atAP2 & atAP1)}
+
+action: Go(Father, PO2, H)
+E = {e}
+D = {e}
+R_A = {(e, e)}
+pre = {(e, atAP2)}
+post = {(e, !atAP2 & atAH)}
+
+action: Go(Father, PO1, H)
+E = {e}
+D = {e}
+R_A = {(e, e)}
+pre = {(e, atAP1)}
+post = {(e, !atAP1 & atAH)}
+
+action: Wrap(Father, P)
+E = {e, f}
+D = {e, f}
+R_A = {(e, e), (f, f)}
+pre = {(e, hasAP),(f, !hasAP)}
+post = {(e, wrapP),(f, T)}
+
+
